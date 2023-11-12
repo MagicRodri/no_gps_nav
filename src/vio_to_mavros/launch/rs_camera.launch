@@ -1,9 +1,9 @@
 <launch>
 
   <!-- mpu6050 -->
-  <node name="mpu_node" pkg="mpu6050_driver" type="mpu6050_node" output="screen">
+  <!-- <node name="mpu_node" pkg="mpu6050_driver" type="mpu6050_node" output="screen">
     <rosparam file="$(find mpu6050_driver)/config/mpu_settings.yaml" command="load"/>
-  </node>
+  </node> -->
 
   <!-- RS -->
   <arg name="serial_no"           default=""/>
@@ -30,8 +30,8 @@
   <arg name="enable_confidence"   default="true"/>
   <arg name="confidence_fps"      default="-1"/>
 
-  <arg name="infra_width"         default="640"/>
-  <arg name="infra_height"        default="480"/>
+  <arg name="infra_width"         default="424"/>
+  <arg name="infra_height"        default="240"/>
   <arg name="enable_infra"        default="false"/>
   <arg name="enable_infra1"       default="true"/>
   <arg name="enable_infra2"       default="true"/>
@@ -159,6 +159,6 @@
   <node pkg="vins" type="vins_node" name="vins"
         args="/home/orangepi/dev/vins_ws/src/VINS-Fusion/config/realsense_d435/realsense_stereo_imu_config.yaml"
         output="screen">
-        <!-- <remap from="/vins/pose" to="/mavros/vision_pose/pose"  /> -->
+        <remap from="/vins/pose" to="/mavros/vision_pose/pose"  />
     </node> 
 </launch>
