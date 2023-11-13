@@ -2,9 +2,16 @@
 	<!-- vim: set ft=xml noet : -->
 	<!-- example launch script for ArduPilot based FCU's -->
 
+	<!-- transform world frame to map (global) frame-->
+    <node pkg="tf" type="static_transform_publisher" name="fcutg" args="0 0 0 0 0 0 map world 100" />
+
+    <!-- transform base_link frame to map (global) frame for mavros-->
+    <node pkg="tf" type="static_transform_publisher" name="fcutf" args="0 0 0 0 0 0 map base_link 100" />
+
 	<!-- <arg name="fcu_url" default="udp://127.0.0.1:14551@14550" /> -->
 	<arg name="fcu_url" default="/dev/ttyACM0:57600" />
-	<arg name="gcs_url" default="udp://@192.168.1.248:14550" />
+	<!-- <arg name="gcs_url" default="udp://@192.168.1.248:14550" /> -->
+	<arg name="gcs_url" default="" />
 	<arg name="tgt_system" default="1" />
 	<arg name="tgt_component" default="1" />
 	<arg name="log_output" default="screen" />
@@ -24,8 +31,6 @@
 		<arg name="respawn_mavros" value="$(arg respawn_mavros)" />
 	</include>
 
-	<!-- <node pkg="mavros" name="mavsys" type="mavsys" output="screen" respawn="true">
-		<param name="rate" value="extra1 200" />
-	</node> -->
+	<node pkg="mavros" type="mavsys" name="mavsys" args="--wait rate --raw-sensors 100" />
 
 </launch>

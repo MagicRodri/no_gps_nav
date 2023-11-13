@@ -30,8 +30,8 @@
   <arg name="enable_confidence"   default="true"/>
   <arg name="confidence_fps"      default="-1"/>
 
-  <arg name="infra_width"         default="424"/>
-  <arg name="infra_height"        default="240"/>
+  <arg name="infra_width"         default="640"/>
+  <arg name="infra_height"        default="480"/>
   <arg name="enable_infra"        default="false"/>
   <arg name="enable_infra1"       default="true"/>
   <arg name="enable_infra2"       default="true"/>
@@ -160,5 +160,9 @@
         args="/home/orangepi/dev/vins_ws/src/VINS-Fusion/config/realsense_d435/realsense_stereo_imu_config.yaml"
         output="screen">
         <remap from="/vins/pose" to="/mavros/vision_pose/pose"  />
-    </node> 
+    </node>
+
+    <node pkg="vio_to_mavros" type="set_origin.py" name="origin_publisher">
+    </node>  
+
 </launch>

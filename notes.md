@@ -10,6 +10,9 @@ rosrun mavros mavsys rate --all 10
 # les donnees brutes des capteurs par exemple
 rosrun mavros mavsys rate --raw-sensors 200
 
+# Within launch
+<node pkg="mavros" type="mavsys" name="mavsys" args="--wait rate --raw-sensors 200" />
+
 # pour plus de details sur les options disponibles
 rosrun mavros mavsys rate -h
 ```

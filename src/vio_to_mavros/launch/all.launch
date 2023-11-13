@@ -1,0 +1,8 @@
+<launch>
+
+	<include file="$(find vio_to_mavros)/launch/apm.launch">
+	</include>
+    <include file="$(find vio_to_mavros)/launch/rs_camera.launch">
+	</include>
+
+</launch>
